@@ -38,7 +38,11 @@ const AgregarCita = () => {
       sintomas: "",
     });
   };
-
+  const handleBorrar = (index) => {
+    const citaActualizada = citas.filter((_, i) => i !== index);
+    setCitas(citaActualizada);
+    localStorage.setItem("citas", JSON.stringify(citaActualizada));
+  };
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -127,7 +131,7 @@ const AgregarCita = () => {
         </Form>
       </Card>
 
-      <CitasRegistradas citas={citas} />
+      <CitasRegistradas citas={citas} handleBorrar={handleBorrar} />
     </>
   );
 };
